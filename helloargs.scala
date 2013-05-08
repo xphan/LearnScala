@@ -1,0 +1,1 @@
+println("hello from " + args(0) +"!")
