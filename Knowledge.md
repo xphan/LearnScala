@@ -20,7 +20,7 @@
 - `var` 表示变量
 - `1 to 3` 表示 `(1, 2, 3)`的range，本质上是`1.to(3)`
 - `1 until 3` 表示 `(1, 2)`的range，本质上是`1.until(3)`
-
+- `_`表示默认值，例如var s : Double = _, 那么s会取double的默认值0.0
 **循环的几种写法**
 
 	for (i <- 1 to 3) { print(i) }
@@ -48,3 +48,27 @@
 1. 赋值的结果：在scala中，a=b的结果是unit，因此a=b=c这样的多重赋值不能出现在scala中(导致类型不匹配)
 2. == : 在scala中，==都是基于值的表，基于对象地址的比较是eq（）方法
 3. 分号是半可选的：在{之前要有个分号
+
+# Class
+
+## 类的定义
+
+**Scala将主构造函数放到了类定义中**。如下类定义：
+
+	class CreditCard(val number: Int, var creditLimit: Int)
+
+上面是一个类的完整定义。
+
+**放到类定义中的任意表达式或者可执行语句都会作为主构造函数的一部分执行**
+
+	class Sample {
+		println("You are constructing an instance of Sample")
+	}
+每次构造时，上面这句话都会打印出来
+
+## 类继承
+继承一个基类与java类似，多了两条限制：
+
+1. 重写方法需要override关键字
+2. 只有主构造函数才能往几类构造函数中传参数
+
