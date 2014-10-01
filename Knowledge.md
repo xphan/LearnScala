@@ -72,3 +72,40 @@
 1. 重写方法需要override关键字
 2. 只有主构造函数才能往几类构造函数中传参数
 
+## 单例对象
+使用关键词`object`定义单例对象，单例对象没法往构造函数中传值
+
+## 独立对象与伴生对象
+Scala可以创建一个关联到类上的单例。这样的单例同类共享相同的名字，它称为`伴生对象`,对应的类就被称为`伴生类`。
+
+在scala中，类和伴生对象之间没有界限，他们可以相互访问彼此的private自动和方法
+
+## Scala中的static
+Scala没有静态字段和静态方法。使用伴生对象实现类一级的属性和操作。
+
+
+# 语法糖
+
+## `apply函数`和`update函数`
+用括号传递给变量(对象)一个或多个参数时，Scala 会把它转换成对 apply 方法的调用；与此相似的，当对带有括号并包括一到若干参数的进行赋值时，编译器将使用对象的 update 方法对括号里的参数和等号右边的对象执行调用。
+
+1. theArray(0), 取数组的第一个元素的操作会转换成 theArray.apply(0) 操作，这也能解释为什么 Scala 数组取值不用中括号括下标的方式，因为它也是一次方法调用
+
+2. anyObject("key1") 会被转换成 anyObject.apply("key") 操作，这也会让我们想到 Map 的取值操作，的确如此。
+
+3. 我们在构造 Array 或  Map 时，会简单的写成
+
+	val numNames = Array.apply("one", "two", "three")
+
+这里调用的是伴生对象的apply方法，即
+
+	val numNames = Array.apply(
+
+`update`方法的理解跟apply差不多：
+
+	greetString(0) = "hello"
+会被转变为：
+	
+	greetStrings.update(0, "hello")
+
+
