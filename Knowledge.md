@@ -109,3 +109,43 @@ Scala没有静态字段和静态方法。使用伴生对象实现类一级的属
 	greetStrings.update(0, "hello")
 
 
+# 自适应类型
+
+Scala会在编译时推演类型。
+
+`Nothing`是所有类的子类,是最底层的子类
+`Any`是所有类型的基类型
+
+scala坚持认为无参数化类型的容器是Nothing的容器（这样就无法往里面加入任何东西）
+
+## Any类型
+
+Any类型是所有scala类型的超类
+
+Any类型的方法包括
+`!=()` `==()`,`asInstanceOf()`,`equals()`,`hashCode()``isInstanceOf()`,`toString()`
+
+## Nothing类型
+Nothing类型的作用是帮助类型推演。
+
+## 方法返回类型推演
+如果方法用`=`号定义，Scala就可以推演返回类型，否则，它就假设该方法是一个void方法
+
+	def method1() {6} // void 方法
+	def method2() = {6} // Int
+	def method3() = 6 //Int
+	def method4: Double = 6 // Double
+
+## 传递变参
+
+在类型信息之后使用特殊符号 *
+
+	def max(values: Int*) = values.foldLeft(values(0)) {Math.max}
+
+# 函数值和闭包
+函数是函数式编程的一等公民：可以作为参数传递，可以从函数中返回，可以在函数中嵌套。这些高阶函数称为函数值。
+
+闭包是一种特殊的函数值，在闭包中封闭或绑定了在另一个作用域或上下文中定义的变量。
+
+
+
