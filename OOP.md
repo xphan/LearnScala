@@ -53,3 +53,29 @@ Any类型的方法包括
 ## 8. Nothing类型
 Nothing类型的作用是帮助类型推演。
 
+## 9. Trait
+Trait就像一个拥有部分实现的接口，提供了一个介于单一继承和多重继承的中间地带。
+    
+    trait Friend {
+    	val name: String // 被当做abstract对待，其实际定义由混入这个trait的类提供
+    	def listen() = println("Your friend " + name + " is listening")
+    }
+
+#### Trait与类的区别
+
+1. Trait需要混入类去实现那些已声明的而未初始化的变量和值
+2. Trait的构造器不能有任何参数
+3. Trait会编译成java的接口，还有对应的实现类
+
+#### Trait的混入方式
+1. 实现一级的混入
+
+    class Dog(val name: String) extends Animal with Friend {
+    	override def listen = println(name +"'s listening quitely")
+    }
+
+2. 实例化时候的混入
+
+	val snowy = new Cat("Snowy") with Friend
+
+这里，虽然Cat实现里面没有Friend接口，但是初始化的时候也可以绑定
